@@ -1,0 +1,375 @@
+body{
+	font-size:10px;
+	background-image:url(#{request.contextPath}/resources/images/bg_02.png);
+}
+
+table, td{
+	font-size:10px;
+}
+
+.footerLU .ui-layout-unit-content{
+	background: #0160a2 !important;
+}
+.leftEmpty, .leftEmpty .ui-widget-content, .rightEmpty, .rightEmpty .ui-widget-content{
+	border:none;
+	background: none;
+}
+
+.navLU .ui-layout-unit-content{
+	background:url(#{request.contextPath}/resources/images/icon_bg.png) !important;	
+}
+
+.centerContent{
+	background-color:#ffffff !important;
+}
+
+.selectionRepresenter{
+	background-image:url(#{request.contextPath}/resources/images/glass.png);
+	background-color:#0160a2;
+	background-size: 100%;
+	float: right;
+	padding:8px;	
+}
+
+.but1{
+	background: url(#{request.contextPath}/resources/images/but3.png) no-repeat 0px 0px !important;
+	height:35px;
+	width:32px;
+	padding:0;
+	margin:0;
+	border: none !important;
+}
+
+.but2{
+	background: url(#{request.contextPath}/resources/images/but2.png) no-repeat 0px 0px !important;
+	height:35px;
+	width:32px;
+	padding:0;
+	margin:0;
+	border: none !important;
+}
+
+.but3{
+	background: url(#{request.contextPath}/resources/images/but1.png) no-repeat 0px 0px !important;
+	height:35px;
+	width:32px;
+	padding:0;
+	margin:0;
+	border: none !important;
+}
+
+.menubar{
+	background-image:url(#{request.contextPath}/resources/images/icon_bg.png);
+	height:25px;
+	padding:4px;
+	width:100%;
+}
+
+.centerContent{
+	padding:0;
+	border:none;
+	background-color:#ffffff;
+	width:100%;
+	height:100%;
+	-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 10);
+	-moz-box-shadow: 0 0 3px rgba(0, 0, 0, 10);
+	box-shadow: 0 0 3px rgba(0, 0, 0, 10);	
+}
+
+.centerContent .ui-layout-resizer{
+	background-color: #0160a2;
+}
+
+/* skin overridding starts here */
+.ui-widget, .ui-widget label {
+  font-size: 10px !important;
+}
+
+.ui-widget-content{
+	border:none;
+	
+}
+
+.ui-layout-unit .ui-layout-unit-content{
+	padding:0px !important;
+	overflow: hidden !important;
+}
+
+.ui-layout-unit {
+	padding:0px !important;
+}
+
+.ui-corner-all {
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+}
+.ui-corner-bottom {
+-moz-border-radius-bottomleft: 0px;
+-webkit-border-bottom-left-radius: 0px;
+border-bottom-left-radius: 0px;
+-moz-border-radius-bottomright: 0px;
+-webkit-border-bottom-right-radius: 0px;
+border-bottom-right-radius: 0px;
+}
+
+.ui-radiobutton .ui-radiobutton-box, .ui-chkbox .ui-chkbox-box{
+	width:12px !important;
+	height:12px !important;
+}
+
+.ui-datatable tbody td{
+	padding:2px !important;	
+}
+
+.ui-radiobutton-icon{
+	margin-top:-2;
+	margin-left:-1 !important;
+}
+.ui-icon-check{
+	margin-top:-3;
+	margin-left:-2 !important;
+}
+
+.ui-selection-column{
+	text-align: center;	
+}
+
+
+/* skin overridding ends here */
+
+
+
+/* #navigationContainer .ui-menuitem-link{ */
+/* 	color:#ffffff !important; */
+/* 	height:65px; */
+/* 	width:90px !important; */
+/* 	background-image:url(#{request.contextPath}/resources/images/icon_bg_disable.jpg); */
+/* 	opacity: .35; */
+/* 	filter: Alpha(Opacity=35); */
+/* } */
+/* #navigationContainer .ui-state-disabled{ */
+/* 	opacity: 1 !important; */
+/* 	filter: Alpha(Opacity=1) !important; */
+/* 	background:none !important; */
+/* 	background-image:url(#{request.contextPath}/resources/images/icon_bg_dark.jpg) !important; */
+/* } */
+/* #navigationContainer .ui-state-hover{ */
+/* 	opacity: 1; */
+/* 	filter: Alpha(Opacity=1); */
+/* 	background:none !important; */
+/* 	background-image:url(#{request.contextPath}/resources/images/icon_bg_dark.jpg) !important; */
+	
+/* } */
+/* #navigationContainer .ui-menu-parent .ui-menu-child { */
+/* 	padding: 0em !important; */
+/* } */
+/* #navigationContainer .ui-menu { */
+/* 	padding: 0em !important; */
+/* } */
+
+/* #navigationContainer .ui-slidemenu-backward{ */
+/* 	height:18px !important; */
+/* 	width:18px !important; */
+/* 	font-size:0; */
+/* 	top:0; */
+/* } */
+
+/* #navigationContainer .ui-slidemenu-content{ */
+/* 	height:800px !important; */
+/* } */
+
+
+/* #navigationContainer .ui-menuitem{ */
+/* 	height:100%; */
+/* 	width:100%; */
+/* } */
+
+.navButtons{
+	height:75px;
+	width:90px;
+	align:center;
+	background:none;
+	border:none !important;
+	background-image:url(#{request.contextPath}/resources/images/icon_bg_disable.jpg) !important;
+	opacity: .7;
+	filter: Alpha(Opacity=70);
+}
+
+.navButtons:disabled{
+	opacity: .3;
+	filter: Alpha(Opacity=30);
+}
+
+#navigationContainer .navButtons_selected{
+	opacity: 1;
+	filter: Alpha(Opacity=100);
+	background:none;
+	background-image:url(#{request.contextPath}/resources/images/icon_bg_dark.jpg) !important;
+}
+
+.navButtons .ui-button-text{
+	height:100px;
+	width:100px;
+	padding:0 !important;
+	padding-top: 55px !important;
+	margin-left: -7px !important;
+	font-weight:bold;
+	font-size:12px;
+	color:white;
+}
+
+.navButtons .ui-icon{
+	width:100%;
+	height:100%;
+	top:17px !important;
+	left:25px !important;
+	
+}
+
+.jobs_icon{
+	background-image:url(#{request.contextPath}/resources/images/first_aid.png) !important;
+}
+
+.questions_icon{
+	background-image:url(#{request.contextPath}/resources/images/questions.png) !important;
+}
+
+.schedules_icon{
+	background-image:url(#{request.contextPath}/resources/images/speedometer.png) !important;
+}
+
+.users_icon{
+	background-image:url(#{request.contextPath}/resources/images/add_user.png) !important;
+}
+
+/* .aip_icon{ */
+/* 	background-image:url(#{request.contextPath}/resources/images/icon_set.png) !important; */
+/* 	background-position-y: -90px; */
+/* 	height:75px; */
+/* 	width:100%; */
+/* } */
+
+/* .user_icon{ */
+/* 	background-image:url(#{request.contextPath}/resources/images/icon_set.png) !important; */
+/* 	background-position-y: -160px; */
+/* 	height:75px; */
+/* 	width:100%; */
+/* } */
+
+.admin_icon{
+	background-image:url(#{request.contextPath}/resources/images/key.png) !important;
+}
+
+.create-icon{
+	background-image:url(#{request.contextPath}/resources/images/new.png) !important;
+}
+
+.delete-icon{
+	background-image:url(#{request.contextPath}/resources/images/Trash.png) !important;
+}
+
+.edit-icon{
+	background-image:url(#{request.contextPath}/resources/images/edit.png) !important;
+}
+
+.close-icon{
+	background-image:url(#{request.contextPath}/resources/images/Close.png) !important;
+}
+
+.add-icon{
+	background-image:url(#{request.contextPath}/resources/images/Health.png) !important;
+}
+
+.help-icon{
+	background-image:url(#{request.contextPath}/resources/images/help.png) !important;
+}
+
+.save-icon{
+	background-image:url(#{request.contextPath}/resources/images/Save.png) !important;
+}
+
+.publish-icon{
+	background-image:url(#{request.contextPath}/resources/images/Mail.png) !important;
+}
+
+.globe-icon{
+	background-image:url(#{request.contextPath}/resources/images/invite.png) !important;
+}
+
+.details-icon{
+	background-image:url(#{request.contextPath}/resources/images/info.png) !important;
+}
+
+.publish2-icon{
+	background-image:url(#{request.contextPath}/resources/images/publishquestionnaire.png) !important;
+}
+
+.lock-icon{
+	background-image:url(#{request.contextPath}/resources/images/Lock.png) !important;
+}
+
+.toolBar .ui-button-text{
+	padding-left:25px !important;
+}
+
+.pageContainer .breadCrumb{
+	background-image:url(#{request.contextPath}/resources/images/bg_02.png);
+}
+
+.pageContainer .breadCrumb .ui-menuitem-link{
+	font-weight: normal !important;
+	text-decoration: none;
+	font-size: 11px;
+}
+
+.pageContainer .ui-toolbar{
+	background:none;
+	background-color: white;
+}
+
+.copyRight{
+	color:#fff;
+	text-align: right;
+	width:100%;
+	float:right;
+	padding-right: 5px;
+}
+
+.dataTable th, .dataTable .ui-widget-header{
+	background:#e6e6e6 !important;
+}
+
+.datatable .ui-column-filter{
+	width:100% !important;
+}
+
+.dataTable tbody td {
+	border-color: silver !important;
+	text-overflow: ellipsis;
+	max-width: 300px;
+}
+
+.dataTable .ui-inputfield, .dataTable .ui-inputfield.ui-state-focus{
+	width:100%;
+}
+
+
+.ui-inputfield,  .ui-inputfield.ui-state-focus{
+	background:none;
+	box-shadow:none !important;
+	background-color: white;
+}
+
+.dataTable .ui-state-highlight{
+	background:url(#{request.contextPath}/resources/images/icon_bg.png) !important;	
+	color:#ffffff;
+}
+
+.ui-selectonemenu-filter-container{
+	width:100%;
+}
+
+.invitePanelContainer table td{
+	vertical-align: top;
+}

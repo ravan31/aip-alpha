@@ -1,0 +1,52 @@
+<h:form styleClass="pageContainer" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<p:breadCrumb styleClass="breadCrumb">  
+	    <p:menuitem value="Jobs" url="#" />  
+	    <p:menuitem value="Manage Job Postings" url="#" /> 
+	    <p:menuitem value="Create Job" url="#" />  
+	</p:breadCrumb>
+	<p:toolbar styleClass="toolBar">
+	    <p:toolbarGroup align="left">
+	    	<p:commandButton value="Save" icon="save-icon" action="#{jobMB.editJob()}" update=":content" />  
+	        <p:commandButton value="Cancel" icon="close-icon" process="@this" action="#{pageViewMB.setActivePage('job','aip')}" update=":content" />  
+	   	</p:toolbarGroup> 
+	     <p:toolbarGroup align="right">  
+	     	<p:commandButton title="Help" icon="help-icon"/>
+	     </p:toolbarGroup>
+	</p:toolbar> 
+	<p:panel header="Enter Job Details">  
+	   <h:inputHidden value="#{jobMB.job.id}"></h:inputHidden>
+		 
+       <h:panelGrid columns="2" cellpadding="5">  
+           <h:outputText value="Job Title: " /> 
+           <p:inputText value="#{jobMB.job.title}" style="width:250px" disabled="true" ></p:inputText>
+ 
+           <h:outputText value="Description: " /> 
+           <h:panelGrid columns="2" >  
+           <p:inputTextarea  value="#{jobMB.job.description}" id="description" style="width:250px" label="Description" required="true" >
+           <f:validateLength minimum="5" maximum="255"></f:validateLength>
+           <!-- <f:validateRegex pattern="([a-zA-Z0-9]+([\\s][a-zA-Z0-9]+)*){0,20}." /> -->
+           </p:inputTextarea>
+ 		   <!-- <h:message for="description" style="color:red" /> -->
+ 		   </h:panelGrid>
+           <h:outputText value="Status: " />  
+           <h:panelGrid columns="2" > 
+           <p:selectOneMenu value="#{jobMB.job.status}" required="true" id="Status" label="Status">  
+	            <f:selectItem itemLabel="#{jobMB.job.status}" itemValue="#{jobMB.job.status}" />  
+	            <f:selectItems value="#{jobMB.allStatus}" />  
+	        </p:selectOneMenu>  
+	        <!-- <h:message for="Status" style="color:red" />  -->
+	        </h:panelGrid>  
+	        <h:outputText value="Target Date:" />
+	        <h:panelGrid columns="2" > 
+	        <p:calendar value="#{jobMB.job.close_date}" readonlyInput="true" mindate="#{scheduleMB.current_date}" showOn="button" required="true" id="expirydate" label="Expiry Date"/>  
+       		<!-- <h:message for="expirydate" style="color:red" />  -->
+	        </h:panelGrid>
+       </h:panelGrid>  
+      </p:panel>
+      <p:messages id="messages" autoUpdate="true" closable="true" /> 
+</h:form>
+                    

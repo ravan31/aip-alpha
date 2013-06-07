@@ -1,0 +1,46 @@
+<h:form styleClass="pageContainer" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<p:breadCrumb styleClass="breadCrumb">  
+	    <p:menuitem value="Jobs" url="#" />  
+	    <p:menuitem value="Manage Questionaire" url="#" /> 
+	    <p:menuitem value="Create Questionaire" url="#" /> 
+	    <p:menuitem value="Add Questions" url="#" />  
+	</p:breadCrumb>
+	<p:toolbar styleClass="toolBar">
+	    <p:toolbarGroup align="left">
+	    	<p:commandButton value="Save" icon="save-icon" action="#{questionnaireMB.saveQuestion()}" update=":content" />  
+	        <p:commandButton value="Cancel" icon="close-icon" process="@this"  action="#{pageViewMB.setActivePage('questionaire-create','actions')}" update=":content" />  
+	   	</p:toolbarGroup> 
+	     <p:toolbarGroup align="right">  
+	     	<p:commandButton title="Help" icon="help-icon"/>
+	     </p:toolbarGroup>
+	</p:toolbar> 
+	<p:panel header="Enter Question Details">  
+		    <h:panelGrid columns="2" cellpadding="5">  
+	           <h:outputText value="Question Type: " />  
+	           <h:panelGrid columns="2" >  
+	           <p:selectOneMenu value="#{questionnaireMB.question.type}" required="true" id="QuestionType" label="Question Type">  
+		           <f:selectItem itemLabel="Select One" itemValue="" />  
+		           <f:selectItems  value="#{questionnaireMB.questionTypes}" var="questionType" itemLabel="#{questionType}" itemValue="#{questionType}"/>  
+		       </p:selectOneMenu>   
+				</h:panelGrid>
+			   <h:outputText value="Alloted Time:"></h:outputText>
+			   <p:spinner id="prefix" value="#{questionnaireMB.question.alloted_time}"  onkeypress="return false" max="5" suffix=" Minutes" min="0"  label="time">
+      <f:validateLongRange minimum="1"
+                                maximum="5" for="prefix" /> 
+                                </p:spinner> 
+			   
+	           <h:outputText value="Question:" />
+	           <h:panelGrid columns="2" >    
+	           <p:inputTextarea style="width:300px" value="#{questionnaireMB.question.question}" id="Question" label="Question" required="true" >
+	           </p:inputTextarea>
+	         
+				</h:panelGrid>
+	       </h:panelGrid>  
+	       <p:messages id="messages" autoUpdate="true" closable="true" />  
+	</p:panel>
+</h:form>
+                    

@@ -1,0 +1,56 @@
+<h:form styleClass="pageContainer" xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:ui="http://java.sun.com/jsf/facelets"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:p="http://primefaces.org/ui"
+ xmlns:f="http://java.sun.com/jsf/core">
+ <p:breadCrumb styleClass="breadCrumb">  
+     <p:menuitem value="Jobs" url="#" />  
+     <p:menuitem value="Manage Questionaire" url="#" /> 
+     <p:menuitem value="Edit Questionaire" url="#" />   
+ </p:breadCrumb>
+ <p:toolbar styleClass="toolBar">
+     <p:toolbarGroup align="left">
+      <p:commandButton value="Save" icon="save-icon" disabled="ture" action="#{questionnaireMB.updateQuestionnaire()}" update=":content" />  
+      <p:commandButton value="Add Question" icon="add-icon" disabled="#{questionnaireMB.questionnaire.status == 'LOCKED'}"  action="#{questionnaireMB.goToAddQuestion()}" update=":content" />  
+         <p:commandButton value="Lock" icon="lock-icon"  disabled="#{questionnaireMB.questionnaire.status == 'LOCKED'}" update=":content" action="#{questionnaireMB.doPublish()}" /> 
+         <p:commandButton value="Cancel" icon="close-icon" process="@this" action="#{pageViewMB.setActivePage('questionaire','aip')}" update=":content" />  
+     </p:toolbarGroup> 
+      <p:toolbarGroup align="right">  
+       <p:commandButton title="Help" icon="help-icon"/>
+      </p:toolbarGroup>
+ </p:toolbar> 
+ <p:panel header="Questionaire Details">  
+       <h:panelGrid columns="2" cellpadding="5">  
+           <h:outputText value="Questionaire Title: " />  
+           <p:inputText value="#{questionnaireMB.questionnaire.title}" label="" disabled="true" style="width:250px" ></p:inputText>
+           <h:inputHidden value="#{questionnaireMB.questionnaire.id}"></h:inputHidden>
+     </h:panelGrid>  
+      </p:panel>
+      <p:panel header="Questions">  
+      <p:dataTable id="dataTable" var="qn" value="#{questionnaireMB.allQuestions}" styleClass="dataTable"
+                  paginator="true"  rows="10" paginatorPosition="bottom"
+                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                  rowsPerPageTemplate="5,10,15">
+          <p:column filterBy="#{qn.question}" filterMatchMode="contains">
+             <f:facet name="header">
+                 <h:outputText value="Question" />
+             </f:facet>
+             <h:outputText id="question" value="#{qn.question}" title="#{qn.question}" />
+         </p:column>
+         <p:tooltip for="question" value="#{qn.question}" showEffect="question" hideEffect="question" />
+         <p:column filterBy="#{qn.type}" filterMatchMode="contains">
+             <f:facet name="header">
+                 <h:outputText value="Question Type" />
+             </f:facet>
+             <h:outputText value="#{qn.type}" />
+         </p:column>
+   <p:column filterBy="#{qn.alloted_time}" filterMatchMode="contains">
+             <f:facet name="header">
+                 <h:outputText value="Alloted Time" />
+             </f:facet>
+             <h:outputText value="#{qn.alloted_time} Minutes" />
+         </p:column>
+     </p:dataTable>
+     </p:panel>
+   <p:messages id="messages"  autoUpdate="true" closable="true" /> 
+</h:form>

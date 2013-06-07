@@ -1,0 +1,29 @@
+<h:form xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<h:form>
+		<p:toolbar>
+	    <p:toolbarGroup align="left">
+	    	Enter your Details:
+	    	<p:separator />
+	        <p:commandButton type="button" title="Save" icon="ui-icon-disk"/>
+	        <p:commandButton type="button" title="Delete" icon="ui-icon-trash"/>
+	        <p:commandButton type="button" title="Print" icon="ui-icon-print"/>
+	    </p:toolbarGroup>
+	</p:toolbar>
+	</h:form>
+       <p:messages id="messages" />
+       <h:panelGrid columns="2">
+        <h:outputLabel for="name" value="Standard Label:" />
+        <p:inputText id="name" required="true" />
+
+        <p:outputLabel for="extended" value="Extended Label:" />
+        <p:inputText id="extended" required="true" />
+
+        <p:outputLabel for="number" value="Number:" />
+        <p:spinner id="number" value="0"/>
+       </h:panelGrid>
+ </h:form>
+                    

@@ -1,0 +1,70 @@
+<h:form styleClass="pageContainer" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<p:breadCrumb styleClass="breadCrumb">  
+	    <p:menuitem value="Schedules" url="#" />  
+	    <p:menuitem value="Manage Schedules" url="#" />  
+	</p:breadCrumb>
+	<p:toolbar styleClass="toolBar">
+	    <p:toolbarGroup align="left">
+	    	<p:commandButton value="Assign" icon="assign-icon" action="#{scheduleResponseMB.assignToReviewer()}" update=":content" />  
+	        
+	   	</p:toolbarGroup>
+	     <p:toolbarGroup align="right">  
+	     	<p:commandButton type="button" title="Help" icon="help-icon"/>
+	     </p:toolbarGroup>
+	</p:toolbar> 
+	<h:form prependId="false">
+	    <p:dataTable id="dataTable" var="scheduleResponse" value="#{scheduleResponseMB.allScheduleResponses}" styleClass="dataTable"
+	                 paginator="true"  rows="15" paginatorPosition="bottom" editable="true" editMode="cell" 
+	                 selection="#{scheduleResponseMB.selectedScheduleResponses}" 
+	                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+	                 rowsPerPageTemplate="5,10,15">
+	        <p:column selectionMode="multiple" style="width:2%" />  
+	        <p:column filterBy="#{scheduleResponse.email}" filterMatchMode="contains">
+	            <f:facet name="header"> 
+	                <h:outputText value="Recieved From" />
+	            </f:facet>
+	            <h:outputText value="#{scheduleResponse.email}" />
+	        </p:column>
+	        <p:column filterBy="#{scheduleResponse.job_id}" filterMatchMode="contains">
+	            <f:facet name="header">
+	                <h:outputText value="Job Title" />
+	            </f:facet>
+	            <h:outputText value="#{scheduleResponse.job_id}" />
+	        </p:column>
+			<p:column filterBy="#{scheduleResponse.questionnaire_id}" filterMatchMode="contains">
+	            <f:facet name="header">
+	                <h:outputText value="Questionnaire Title" />
+	            </f:facet>
+	            <h:outputText value="#{scheduleResponse.questionnaire_id}" />
+	        </p:column>
+	        <p:column filterBy="#{scheduleResponse.status}" filterMatchMode="contains">
+	            <f:facet name="header">
+	                <h:outputText value="Status" />
+	            </f:facet>
+	            <h:outputText value="#{scheduleResponse.status}" />
+	        </p:column>
+	       <p:column filterBy="#{scheduleResponse.reviewer}" filterMatchMode="contains">
+	            <f:facet name="header">
+	                <h:outputText value="Reviewer" />
+	            </f:facet>
+	            <h:outputText value="#{scheduleResponse.reviewer}" />
+	        </p:column>
+	         <p:column filterBy="#{scheduleResponse.reviewer}" filterMatchMode="contains" headerText="Reviewer" style="width:25%">  
+            <p:cellEditor>  
+                <f:facet name="output"><h:outputText value="#{scheduleResponse.reviewer}" /></f:facet>  
+                <f:facet name="input">  
+                    <h:selectOneMenu value="#{scheduleResponse.reviewer}" style="width:100%">  
+                        <f:selectItems value="#{scheduleResponseMB.usersList}" />  
+                    </h:selectOneMenu>  
+                </f:facet>  
+            </p:cellEditor>  
+        </p:column>  
+	      </p:dataTable>
+	      <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+	</h:form>
+</h:form>
+                    

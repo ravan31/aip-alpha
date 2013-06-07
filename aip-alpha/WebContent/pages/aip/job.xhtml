@@ -1,0 +1,62 @@
+<h:form styleClass="pageContainer" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<p:breadCrumb styleClass="breadCrumb">  
+	    <p:menuitem value="Jobs" url="#" />  
+	    <p:menuitem value="Manage Job Postings" url="#" />  
+	</p:breadCrumb>
+	<p:toolbar styleClass="toolBar">
+	    <p:toolbarGroup align="left">
+	    	<p:commandButton value="New" icon="create-icon" action="#{jobMB.createJob()}" update=":content" />  
+	        <p:commandButton value="View / Edit" icon="edit-icon"  action="#{pageViewMB.setActivePage('job-edit','actions')}" update=":content" />  
+	        <p:commandButton value="Invite" icon="globe-icon" action="#{jobMB.loadInvitePage()}" update=":content" />  
+	        <p:commandButton value="Delete" disabled="true" icon="delete-icon" action="#{pageViewMB.setActivePage('job-edit','actions')}" update=":content"/>  
+	   	</p:toolbarGroup>
+	     <p:toolbarGroup align="right">  
+	     	<p:commandButton type="button" title="Help" icon="help-icon"/>
+	     </p:toolbarGroup>
+	</p:toolbar> 
+	<h:form prependId="false">
+	    <p:dataTable id="dataTable" var="job" value="#{jobMB.allJobs}" styleClass="dataTable"
+	                 paginator="true"  rows="10" paginatorPosition="bottom"
+	                 selection="#{jobMB.job}" 
+	                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+	                 rowsPerPageTemplate="5,10,15">
+	        <p:column selectionMode="single" style="width:2%" />  
+	        <p:column filterBy="#{job.title}" filterMatchMode="contains">
+	            <f:facet name="header"> 
+	                <h:outputText value="Job Title" />
+	            </f:facet>
+	            <h:outputText value="#{job.title}" />
+	        </p:column>
+	        <p:column filterBy="#{job.description}" filterMatchMode="contains">
+	            <f:facet name="header">
+	                <h:outputText value="Job Description" />
+	            </f:facet>
+	            <h:outputText value="#{job.description}" />
+	        </p:column>
+			<p:column filterBy="#{job.status}" filterMatchMode="contains">
+	            <f:facet name="header">
+	                <h:outputText value="Status" />
+	            </f:facet>
+	            <h:outputText value="#{job.status}" />
+	        </p:column>
+	        <p:column filterBy="#{job.created_by}" filterMatchMode="contains">
+	            <f:facet name="header">
+	                <h:outputText value="Created By" />
+	            </f:facet>
+	            <h:outputText value="#{job.created_by}" />
+	        </p:column>
+	        <p:column filterBy="#{job.created_on}" filterMatchMode="contains">
+	            <f:facet name="header">
+	                <h:outputText value="Created On" />
+	            </f:facet>
+	            <h:outputText value="#{job.created_on}" />
+	        </p:column>
+	    </p:dataTable>
+	</h:form>
+	<p:messages id="messages"  autoUpdate="true" closable="true" /> 
+</h:form>
+                    

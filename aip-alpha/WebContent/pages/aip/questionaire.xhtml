@@ -1,0 +1,57 @@
+<h:form styleClass="pageContainer" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<p:breadCrumb styleClass="breadCrumb">  
+	    <p:menuitem value="Jobs" url="#" />  
+	    <p:menuitem value="Manage Questionaires" url="#" />  
+	</p:breadCrumb>
+	<p:toolbar id="tbar" styleClass="toolBar">
+	    <p:toolbarGroup align="left">
+	    	<p:commandButton value="New" icon="create-icon" action="#{questionnaireMB.createNewQuestionnaire()}" update=":content" />  
+	        <p:commandButton value="View / Edit" icon="edit-icon" action="#{pageViewMB.setActivePage('questionaire-edit','actions')}" update=":content" />  
+	        <p:commandButton value="Delete" disabled="true" icon="delete-icon" action="#{pageViewMB.setActivePage('questionaire-edit','actions')}" update=":content"/> 
+	   	</p:toolbarGroup> 
+	     <p:toolbarGroup align="right">  
+	     	<p:commandButton type="button" title="Help" icon="help-icon"/>
+	     </p:toolbarGroup>
+	</p:toolbar> 
+	<h:form prependId="false">
+	    <p:dataTable id="dataTable" var="questionnaire" value="#{questionnaireMB.allQuestionnaires}" styleClass="dataTable"
+	                 paginator="true"  rows="10" paginatorPosition="bottom"
+	                 selection="#{questionnaireMB.questionnaire}" 
+	                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+	                 rowsPerPageTemplate="5,10,15" >
+	        <p:column selectionMode="single" style="width:2%"  />  
+	        <p:column filterBy="#{questionnaire.title}" filterMatchMode="contains">
+	            <f:facet name="header">
+	                <h:outputText value="Questionnaire Title" />
+	            </f:facet>
+	            <h:outputText value="#{questionnaire.title}" />
+	            
+	        </p:column>
+	        <p:column filterBy="#{questionnaire.status}" filterMatchMode="contains">
+	            <f:facet name="header">
+	                <h:outputText value="Status" />
+	            </f:facet>
+	            <h:outputText value="#{questionnaire.status}" />
+	            
+	        </p:column>
+	        <p:column filterBy="#{questionnaire.created_by}" filterMatchMode="contains">
+	            <f:facet name="header">
+	                <h:outputText value="Created By" />
+	            </f:facet>
+	            <h:outputText value="#{questionnaire.created_by}" />
+	        </p:column>
+	        <p:column filterBy="#{questionnaire.created_on}" filterMatchMode="contains">
+	            <f:facet name="header">
+	                <h:outputText value="Created On" />
+	            </f:facet>
+	            <h:outputText value="#{questionnaire.created_on}" />
+	        </p:column>
+	    </p:dataTable>
+	    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+	</h:form>
+</h:form>
+                    

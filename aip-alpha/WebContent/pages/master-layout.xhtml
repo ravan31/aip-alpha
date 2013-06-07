@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+<h:outputStylesheet library="css" name="style.css" />
+<script>
+	function doSelection(index){
+		var classes = "ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left navButtons";
+		$('.navButtons').attr("class",classes);
+		$(".navButtons:nth-child("+index+")").attr("class",classes+" navButtons_selected");
+	}
+</script>
+</h:head>
+<h:body onload="doSelection(2)">
+
+ <p:layout fullPage="true">
+ 	<p:layoutUnit position="west" styleClass="leftEmpty" size="100">
+	</p:layoutUnit>
+	<p:layoutUnit position="east" styleClass="rightEmpty" size="100">
+	</p:layoutUnit>
+	<p:layoutUnit position="center" styleClass="centerContent">
+		<p:layout>
+			<p:layoutUnit position="north" size="105" styleClass="topLU">
+				<table width="100%" cellspacing="0" cellpadding="0">
+				  <tr>
+						<td align="left" valign="middle"  style="padding-left:5px"><p:graphicImage library="images" name="logo.png" styleClass="logoStyle" ></p:graphicImage></td>
+						<td align="right"><div class="selectionRepresenter"><p:graphicImage  library="images" name="magnifier.png"></p:graphicImage></div></td>
+				  </tr>
+				  <tr height="25px">
+					<td colspan="2" align="right" valign="middle" class="menubar">
+						<!-- TODO replace these with actuals -->
+						<h:form styleClass="header_icons">
+							<p:commandButton value=" " styleClass="but1"
+								action="#{userMB.logOut()}" ajax="false" />
+							<p:commandButton value=" " styleClass="but2"
+								action="#{userMB.logOut()}" ajax="false" />
+							<p:commandButton value=" " styleClass="but3"
+								action="#{userMB.logOut()}" ajax="false"  />
+						</h:form>
+					</td>
+				  </tr>
+				</table>
+			</p:layoutUnit>
+			<p:layoutUnit position="south" size="20" styleClass="footerLU">
+				<p:outputLabel styleClass="copyRight">Copyright © 2013 Yinsol. All rights reserved</p:outputLabel>
+			</p:layoutUnit>
+			<p:layoutUnit position="west" size="90" styleClass="navLU" rendered="#{userMB.isPermitted(1024)}">
+				<div id="navigationContainer" class="nav"> 
+					<h:form class="navButtonsForm">
+						<p:commandButton  styleClass="navButtons" ajax="true" onmouseup="doSelection(2)" icon="jobs_icon" value="Jobs" action="#{pageViewMB.setActivePage('job','aip')}" update=":content" ></p:commandButton>
+						<p:commandButton styleClass="navButtons" ajax="true" onmouseup="doSelection(3)" icon="questions_icon" value="Questions"  action="#{pageViewMB.setActivePage('questionaire','aip')}" update=":content" ></p:commandButton>
+						<p:commandButton styleClass="navButtons" ajax="true" onmouseup="doSelection(4)" icon="schedules_icon" value="Schedule" action="#{pageViewMB.setActivePage('schedule','aip')}" update=":content"></p:commandButton>
+						<p:commandButton styleClass="navButtons" ajax="true" onmouseup="doSelection(5)" disabled="true" icon="users_icon" value="Profiles"  action="#{pageViewMB.setActivePage('profile','aip')}" update=":content"></p:commandButton>
+						<p:commandButton styleClass="navButtons" ajax="true" onmouseup="doSelection(6)" disabled="true" icon="admin_icon" value="Admin"  action="#{pageViewMB.setActivePage('role','admin')}" update=":content"></p:commandButton>
+					</h:form>
+				</div>
+			</p:layoutUnit>
+			
+			<p:layoutUnit position="center" styleClass="centerLU" >
+				<p:ajaxStatus onprestart="#{pageViewMB.setDefaultPage()}" ></p:ajaxStatus>
+				<p:outputPanel id="content">
+			    	<ui:include src="#{pageViewMB.getActivePage()}.xhtml"/>
+			    </p:outputPanel>
+            </p:layoutUnit>
+		</p:layout>
+	</p:layoutUnit>
+ </p:layout>
+</h:body>
+</html>

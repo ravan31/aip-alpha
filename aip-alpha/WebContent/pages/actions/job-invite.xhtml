@@ -1,0 +1,59 @@
+<h:form styleClass="pageContainer" xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:ui="http://java.sun.com/jsf/facelets"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:p="http://primefaces.org/ui"
+ xmlns:f="http://java.sun.com/jsf/core">
+ <p:breadCrumb styleClass="breadCrumb">  
+     <p:menuitem value="Jobs" url="#" />  
+     <p:menuitem value="Manage Job Postings" url="#" /> 
+     <p:menuitem value="Invite" url="#" />  
+ </p:breadCrumb>
+ <p:toolbar styleClass="toolBar">
+     <p:toolbarGroup align="left">
+      <p:commandButton value="Publish" icon="publish-icon" action="#{jobMB.doInvite()}" update=":content" />  
+         <p:commandButton value="Cancel" icon="close-icon" process="@this" action="#{pageViewMB.setActivePage('job','aip')}" update=":content" />  
+     </p:toolbarGroup> 
+      <p:toolbarGroup align="right">  
+       <p:commandButton title="Help" icon="help-icon"/>
+      </p:toolbarGroup>
+ </p:toolbar> 
+  <p:panel id="invitePanelContainer" header="Enter Invitation Details">  
+        <h:inputHidden value="#{scheduleMB.schedule.job_id}"  ></h:inputHidden>
+         <h:panelGrid columns="2">
+        <p:outputPanel>
+          <h:panelGrid columns="2" cellpadding="5">  
+            <h:outputText value="Selected Job: " />  
+              <p:inputText value="#{jobMB.job.title}" disabled="true" style="width:250px" ></p:inputText>
+             
+         <h:outputText value="Select Questionnaire: " /> 
+         <h:panelGrid columns="2">
+          <p:selectOneMenu value="#{scheduleMB.schedule.questionnaire_id}" required="true" label="Select Questionnaire" filter="true" filterMatchMode="contains">   
+                <f:selectItem itemLabel="Select One" itemValue="" />  
+                <f:selectItems value="#{questionnaireMB.questionnairesList}" var="questionnaire" itemLabel="#{questionnaire.title}" itemValue="#{questionnaire.id}" />  
+            </p:selectOneMenu>    
+            <p:commandButton value="" icon="details-icon" style="height:18;width:18px;padding:2px;backgroundAlpha:0"  action="#{questionnaireMB.questionnaireChange()}" update="dataList"  />  
+         </h:panelGrid>
+         
+             <h:outputText value="Enter Emails: " />  
+              <p:inputTextarea  value="#{scheduleMB.schedule.email_list}" label="Email" style="width:250px" required="true" >
+              <f:validateRegex pattern="^((\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)*([,])*)*$"></f:validateRegex>
+              </p:inputTextarea>
+              
+      <h:outputText value="Expiry Date:" />
+           <p:calendar value="#{scheduleMB.schedule.expiry_date}" required="true" readonlyInput="true" mindate="#{scheduleMB.current_date}" label="Expiry Date" showOn="button" /> 
+        </h:panelGrid>  
+        </p:outputPanel>
+         <p:dataList id="dataList" style="float:right" value="#{questionnaireMB.allQuestions}" var="qn" type="definition" >  
+        <f:facet name="description">  
+         <h:panelGrid columns="2" >
+       <p:graphicImage url="resources/images/Player play.png" width="10"></p:graphicImage>       
+           <h:outputText value="#{qn.question}" /> 
+         </h:panelGrid>
+        </f:facet>  
+    </p:dataList> 
+  </h:panelGrid>
+     </p:panel>
+   
+             <p:messages id="messages"  autoUpdate="true" closable="true" />     
+ 
+</h:form>
