@@ -4,7 +4,7 @@ USE `AIP`;
 
 /*Table structure for table `education` */
 
-CREATE TABLE education (
+CREATE TABLE mm_education (
   id int(11) NOT NULL AUTO_INCREMENT,
   name varchar(10) NOT NULL,
   PRIMARY KEY (id)
